@@ -9,9 +9,9 @@ export const Billboard: React.FC<BillboardProps> = ({
     data
 }) => {
     return (
-        <div className="px-4 py-2 sm:px-6 sm:py-3 lg:px-8 lg:py-4 rounded-xl overflow-hidden">
+        <div className="px-4 py-2 sm:px-6 sm:py-3 lg:px-8 lg:py-4 rounded-sm overflow-hidden">
             <div 
-                className="rounded-xl relative aspect-square md:aspect-auto md:h-80 overflow-hidden bg-cover"
+                className="rounded-sm relative aspect-square md:aspect-auto md:h-80 overflow-hidden bg-cover"
                 style={{backgroundImage: `url(${data?.imageUrl})`}}>
                     <div className="h-full w-full flex flex-col justify-center items-center text-center gap-y-8">
                         <div
