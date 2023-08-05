@@ -6,8 +6,6 @@ import Carousel from '@/components/Carousel';
 import { ProductList } from '@/components/product-list';
 import Container from '@/components/ui/container';
 import Filter from './components/filter';
-import { NoResults } from '@/components/ui/no-results';
-import { ProductCard } from '@/components/ui/product-card';
 import getCategories from '@/actions/get-categories';
 import { ChevronDown } from 'lucide-react';
 import MobileFilters from './components/mobile-filter';
@@ -25,7 +23,6 @@ export const revalidate = 0;
 const HomePage:React.FC<HomePageProps> = async({
   searchParams
 }) => {
-  // const products = await getProducts({isFeatured: true});
   const billboards = await getBillboards();
   const products = await getProducts({
     isFeatured: true,
@@ -67,7 +64,6 @@ const HomePage:React.FC<HomePageProps> = async({
               </div>
             </div>
             <div className="mt-6 lg:col-span-4 lg:mt-0">
-              {products.length === 0 && <NoResults />}
               <ProductList title={"Product For You "}  items={products} />
             </div>
           </div>
