@@ -4,7 +4,7 @@ import Container from "@/components/ui/container";
 import { ChevronDown, Phone } from "lucide-react";
 
 
-const NavbarLabel = async () => {
+const NavbarLabel = () => {
 
     return (
         <div className="h-10 bg-green-900">

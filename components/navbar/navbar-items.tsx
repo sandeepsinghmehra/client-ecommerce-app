@@ -34,9 +34,8 @@ export const NavbarItems: React.FC<NavbarItemsProps> = ({
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                     {routes.map((route:any) => (
-                        <DropdownMenuItem>
+                        <DropdownMenuItem key={route.href}>
                             <Link
-                                key={route.href}
                                 href={route.href}
                                 className={cn("text-sm font-medium transition-colors hover:text-primary",route.active ? "text-black dark:text-white" : "text-muted-foreground")}
                                 onClick={() =>  setIsNavOpen && setIsNavOpen(false)} 
@@ -48,7 +47,6 @@ export const NavbarItems: React.FC<NavbarItemsProps> = ({
                 </DropdownMenuContent>
             </DropdownMenu>
             <Link
-                key={`/deals`}
                 href={'/deals'}
                 className={cn("text-sm p-3 lg:p-0 font-bold transition-colors hover:text-primary", pathName === '/deals' ? "text-black dark:text-white" : "text-muted-foreground")}
                 onClick={() =>  setIsNavOpen && setIsNavOpen(false)} 
@@ -56,15 +54,13 @@ export const NavbarItems: React.FC<NavbarItemsProps> = ({
                 Deals
             </Link>
             <Link
-                key={`/whats-new`}
                 href={'/whats-new'}
                 className={cn("text-sm p-3 lg:p-0 font-bold transition-colors hover:text-primary", pathName === '/whats-new' ? "text-black dark:text-white" : "text-muted-foreground")}
                 onClick={() =>  setIsNavOpen && setIsNavOpen(false)} 
             >
-                What's New
+                What&apos;s New
             </Link>
             <Link
-                key={`/delivery`}
                 href={'/delivery'}
                 className={cn("text-sm p-3 lg:p-0 font-bold transition-colors hover:text-primary", pathName === '/delivery' ? "text-black dark:text-white" : "text-muted-foreground")}
                 onClick={() =>  setIsNavOpen && setIsNavOpen(false)} 
