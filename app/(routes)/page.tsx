@@ -16,7 +16,7 @@ export default async function HomePage() {
         {/* <Billboard data={billboard} /> */}
         <Carousel data={billboards} />
         <div className='flex flex-col gap-y-8 px-4 sm:px-6 lg:px-8'>
-          <ProductList title={"Featured Product "}  items={products} />
+          <ProductList title={"Product For You "}  items={products} />
         </div>
       </div>
     </Container>
