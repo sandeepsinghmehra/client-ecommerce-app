@@ -4,6 +4,7 @@ import Gallery from "@/components/gallery";
 import Info from "@/components/product-info";
 import { ProductList } from "@/components/product-list";
 import Container from "@/components/ui/container";
+import { useParams } from "next/navigation";
 
 export const revalidate = 0;
 
@@ -23,7 +24,18 @@ const ProductPage: React.FC<ProductPageProps> = async({
     return (
         <div className="bg-white">
             <Container>
-                <div className="px-4 py-10 sm:px-6 lg:px-8">
+                <div className="w-full px-4 py-7 sm:px-6 lg:px-8">
+                    <div className="w-full h-5 line-clamp-1 space-x-2 mb-7 overflow-hidden">
+                        <span className="capitalize font-semibold text-sm text-muted-foreground">
+                            Product
+                        </span>
+                        <span>/</span>
+                        <span className="capitalize font-semibold text-sm text-muted-foreground">
+                            {product?.categoryId?.name.toLowerCase()}
+                        </span>
+                        <span>/</span>
+                        <span className="capitalize font-bold text-sm text-muted-foreground">{product?.name.toLowerCase()}</span>
+                    </div>
                     <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
                         {/* Gallary */}
                         <Gallery images={product.images} />

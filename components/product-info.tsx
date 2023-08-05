@@ -2,7 +2,7 @@
 
 import { Product } from "@/types";
 import { Currency } from "@/components/ui/currency";
-import Button from "@/components/ui/button-example";
+import { Button } from "@/components/ui/button";
 import { ShoppingCart } from "lucide-react";
 
 interface InfoProps {
@@ -33,9 +33,21 @@ const Info: React.FC<InfoProps> = ({
                 </div>
             </div>
             <div className="mt-10 flex items-center gap-x-3">
-                <Button onClick={()=>{}} className="flex items-center gap-x-2">
+                <Button
+                    size={'lg'}
+                    variant={'default'}
+                    className="bg-teal-900 text-white rounded-3xl"
+                    onClick={()=>{}}
+                >
+                    Buy Now
+                </Button>
+                <Button 
+                    size={'lg'}
+                    variant={'outline'}
+                    onClick={()=>{}} 
+                    className="space-x-2 text-teal-900 rounded-3xl"
+                >
                     Add To Cart
-                    <ShoppingCart size={20} />
                 </Button>
             </div>
         </div>

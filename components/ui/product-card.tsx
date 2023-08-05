@@ -9,6 +9,7 @@ import { Currency } from "@/components/ui/currency";
 import { useRouter } from "next/navigation";
 import { MouseEventHandler } from "react";
 import { usePreviewContext } from "@/context/usePreview";
+import { Button } from "./button";
 
 
 interface ProductCardProps {
@@ -50,7 +51,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             </div>
             {/* Description */}
             <div>
-                <p className="font-semibold text-lg">
+                <p className="font-semibold text-lg line-clamp-2">
                     {data.name}
                 </p>
                 <p className="text-sm text-gray-500">
@@ -61,6 +62,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             <div className="flex items-center justify-between">
                 <Currency value={data?.price?.$numberDecimal} />
             </div>
+
+            {/* Cart button */}
+            <Button 
+                size={'sm'}
+                variant={'secondary'}
+                className="rounded-3xl text-teal-900 hover:bg-teal-900 hover:text-white"
+            >
+                Add to Cart
+            </Button>
         </div>
     )
 }
