@@ -59,7 +59,7 @@ const Info: React.FC<InfoProps> = ({
                 </div>
                 <div className="flex flex-col ml-5">
                     <p className="text-muted-foreground text-sm font-semibold">Only <span className="text-red-500">12 items</span> left!</p>
-                    <p className="text-muted-foreground text-sm font-semibold">Don't miss it</p>
+                    <p className="text-muted-foreground text-sm font-semibold">Don&apos;t miss it</p>
                 </div>
             </div>
             <div className="mt-5 flex items-center gap-x-3">
