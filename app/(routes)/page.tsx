@@ -64,7 +64,7 @@ const HomePage:React.FC<HomePageProps> = async({
               </div>
             </div>
             <div className="mt-6 lg:col-span-4 lg:mt-0">
-              <ProductList title={"Product For You "}  items={products} />
+              <ProductList title={"Product For You!"}  items={products} />
             </div>
           </div>
       </div>
