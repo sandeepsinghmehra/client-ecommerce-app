@@ -2,13 +2,14 @@ import qs from 'query-string';
 
 import { Product } from "@/types";
 
-const URL = `${process.env.NEXT_PUBLIC_API_URL}/products`;
+const URL = `${process.env.NEXT_PUBLIC_API_URL}/api/${process.env.NEXT_PUBLIC_STORE_ID}/products`;
 
 interface Query {
     categoryId?: string;
     colorId?: string;
     sizeId?: string;
     isFeatured?: boolean;
+    name?: string;
 }
 
 const getProducts = async (query: Query): Promise<Product[]> => {
@@ -18,7 +19,8 @@ const getProducts = async (query: Query): Promise<Product[]> => {
             categoryId: query.categoryId,
             colorId: query.colorId,
             sizeId: query.sizeId,
-            isFeatured: query.isFeatured
+            isFeatured: query.isFeatured,
+            name: query.name
         }
     })
 
