@@ -1,10 +1,10 @@
 "use client";
 
-// import usePreviewModal from "@/hooks/use-preview-modal";
 import Gallery from "@/components/gallery";
 import Modal from "@/components/ui/modal";
 import Info from "@/components/product-info";
 import { usePreviewContext } from "@/context/usePreview";
+import PreviewInfo from "./preview-info";
 
 
 const PreviewModal = () => {
@@ -25,7 +25,9 @@ const PreviewModal = () => {
           <Gallery images={product.images} />
         </div>
         <div className="sm:col-span-8 lg:col-span-7">
-          <Info data={product} />
+          <PreviewInfo
+            product={product}  
+          />
         </div>
       </div>
     </Modal>
