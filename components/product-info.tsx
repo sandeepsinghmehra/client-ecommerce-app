@@ -69,7 +69,7 @@ const Info: React.FC<InfoProps> = ({
     return (
         <div>
             <h1 className="text-3xl font-bold text-gray-900">{product.name}</h1>
-            <p className="text-muted-foreground text-sm">{product.description}</p>
+            <p className="text-muted-foreground text-sm line-clamp-3">{product.description}</p>
             <hr className="my-5" />
             <div className="mt-3 flex flex-col items-start justify-between">
                 <p className="text-2xl text-gray-900">
