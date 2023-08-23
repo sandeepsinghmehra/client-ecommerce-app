@@ -53,7 +53,6 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children } ) =
     }, [items]);
   
     const removeItem = useCallback((id: string) => {
-        console.log("remove id: ", id);
         const updatedItems = items.map((item:any) =>
             item._id === id && item.quantity > 1
                 ? { ...item, quantity: item.quantity - 1 }
@@ -74,7 +73,6 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children } ) =
   
     // Load the cart items from localStorage on component mount
     useEffect(() => {
-        console.log("running useffect: ")
         const storedCartItems = localStorage.getItem('cartItems');
         if (storedCartItems) {
             setItems(JSON.parse(storedCartItems));
