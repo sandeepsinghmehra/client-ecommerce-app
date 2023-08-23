@@ -21,7 +21,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     data
 }) => {
     const { onOpen } = usePreviewContext();
-    const { items, addItem, removeItem, removeAll } = useCartContext();
+    const { addItem } = useCartContext();
     const router = useRouter();
 
     const handleClick = () => {
@@ -39,7 +39,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     };
 
     return (
-        <div onClick={handleClick} className="bg-white group cursor-pointer rounded-xl border p-3 space-y-4 overflow-hidden">
+        <div onClick={handleClick} key={data._id} className="bg-white group cursor-pointer rounded-xl border p-3 space-y-4 overflow-hidden">
             {/* Images and Actions */}
             <div className="aspect-square rounded-xl bg-gray-100 relative">
                 <Image
