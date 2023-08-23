@@ -6,6 +6,7 @@ import { PreviewContextProvider } from '@/context/previewContext'
 import { ToasterProvider } from '@/providers/toast-provider'
 import PreviewModalProvider from '@/providers/preview-modal-provider'
 import NavbarLabel from '@/components/navbar/navbar-label'
+import { CartProvider } from '@/context/cartContext'
 
 const font = Urbanist({ subsets: ['latin'] })
 
@@ -22,14 +23,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
-        <PreviewContextProvider>
-          <PreviewModalProvider />
-          <ToasterProvider />
-          <NavbarLabel />
-          <Navbar />
-          {children}
-          <Footer />
-        </PreviewContextProvider>
+        <CartProvider>
+          <PreviewContextProvider>
+            <PreviewModalProvider />
+            <ToasterProvider />
+            <NavbarLabel />
+            <Navbar />
+            {children}
+            <Footer />
+          </PreviewContextProvider>
+        </CartProvider>
       </body>
     </html>
   )

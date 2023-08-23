@@ -15,10 +15,14 @@ export interface Product {
     categoryId: Category;
     name: string;
     price: {$numberDecimal: string};
-    sizeId: Size;
-    colorId: Color;
+    sizeId: Size[] | any;
+    colorId: Color[] | any;
     images: Image[];
     isFeatured: boolean;
+    availableQuantity: number;
+    description: string;
+    isFavourite: boolean;
+    quantity?: number;
 }
 export interface Image {
     _id: string;

@@ -9,6 +9,8 @@ import Search from '../search';
 import { NavbarItems } from './navbar-items';
 import { Category } from '@/types';
 import { usePathname } from 'next/navigation';
+import { useCartContext } from '@/context/cartContext';
+import Link from 'next/link';
 
 interface NavbarActionsProps {
     data: Category[];
@@ -20,6 +22,7 @@ export const NavbarActions: React.FC<any> = ({
     const [isMounted, setIsMounted] = useState(false);
     const pathName = usePathname();
     const [isNavOpen, setIsNavOpen] = useState(false); // initiate isNavOpen state with false
+    const { items, addItem, removeItem, removeAll } = useCartContext();
 
     const routes = data.map((route:any) => ({
         href: `/category/${route._id}`,
@@ -47,18 +50,20 @@ export const NavbarActions: React.FC<any> = ({
                 </Button>
                 <div className='hidden lg:block'>Account</div>
             </div>
-            <div className='flex flex-row items-center justify-center lg:gap-x-1'>
-                <Button size={'icon'} variant={'outline'} className="relative flex items-center border-none rounded-full ">
-                    <ShoppingCart
-                        size={20}
-                        color="black"
-                    />
-                    <span className="absolute right-0 top-0 ml-2 text-sm font-bold text-red-600">
-                        0
-                    </span>
-                </Button> 
-                <div className='hidden lg:block'>Cart</div>  
-            </div>
+            <Link href={'/cart'} >
+                <div className='flex flex-row items-center justify-center lg:gap-x-1'>
+                    <Button size={'icon'} variant={'outline'} className="relative flex items-center border-none rounded-full ">
+                        <ShoppingCart
+                            size={20}
+                            color="black"
+                        />
+                        <span className="absolute right-0 top-0 ml-2 text-sm font-bold text-red-600">
+                            {items.length}
+                        </span>
+                    </Button> 
+                    <div className='hidden lg:block'>Cart</div>  
+                </div>
+            </Link>
             <section className="MOBILE-MENU flex justify-end lg:hidden">
                 <Button
                     size={'icon'}

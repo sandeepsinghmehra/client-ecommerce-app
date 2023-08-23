@@ -3,8 +3,9 @@ import getProducts from "@/actions/get-products";
 import Gallery from "@/components/gallery";
 import Info from "@/components/product-info";
 import { ProductList } from "@/components/product-list";
+import { SuggestionProductList } from "@/components/suggestion-product-list";
 import Container from "@/components/ui/container";
-import { useParams } from "next/navigation";
+
 
 export const revalidate = 0;
 
@@ -18,6 +19,25 @@ const ProductPage: React.FC<ProductPageProps> = async({
     params
 }) => {
     const product = await getProduct(params.productId);
+    let variants = await getProducts({name: product.name });
+    let colorSizeId:any = {} // { color: {size: {_id: 'asflsj2323sdfsd'}}}
+    let sizeColorId:any = {} // { size: {color: {_id: 'asflsj2323sdfsd'}}}
+    for(let item of variants){
+        if(Object.keys(colorSizeId).includes(item.colorId.value)){
+            colorSizeId[item.colorId.value][item.sizeId.value] = {_id: item._id}
+        } else {
+            colorSizeId[item.colorId.value] = {}
+            colorSizeId[item.colorId.value][item.sizeId.value] = {_id: item._id}
+        }
+    }
+    for(let item of variants){
+        if(Object.keys(sizeColorId).includes(item.sizeId.value)){
+            sizeColorId[item.sizeId.value][item.colorId.value] = {_id: item._id}
+        } else {
+            sizeColorId[item.sizeId.value] = {}
+            sizeColorId[item.sizeId.value][item.colorId.value] = {_id: item._id}
+        }
+    }
     const suggestionProducts = await getProducts({
         categoryId: product?.categoryId?._id
     });
@@ -42,11 +62,15 @@ const ProductPage: React.FC<ProductPageProps> = async({
                         
                         <div className="mt-10 px-4 sm:px-0 sm:mt-16 lg:mt-0">
                         {/* Info */}
-                        <Info data={product} />
+                        <Info 
+                            product={product} 
+                            variantsColorSizeId={JSON.parse(JSON.stringify(colorSizeId))}
+                            variantsSizeColorId={JSON.parse(JSON.stringify(sizeColorId))} 
+                        />
                         </div>
                     </div>
                     <hr className="my-10" />
-                    <ProductList title={"Related Items"} items={suggestionProducts} />
+                    <SuggestionProductList title={"Related Items"} items={suggestionProducts} />
                 </div>
             </Container>
         </div>

@@ -30,6 +30,23 @@ const HomePage:React.FC<HomePageProps> = async({
     colorId: searchParams.colorId,
     sizeId: searchParams.sizeId
   });
+  let productItems: any = {};
+  for(let item of products){
+      if(item.name in productItems){
+          if(!productItems[item.name].colorId.includes(item.colorId) && item.availableQuantity > 0){
+              productItems[item.name].colorId.push(item.colorId);
+          }
+          if(!productItems[item.name].sizeId.includes(item.sizeId) && item.availableQuantity > 0){
+              productItems[item.name].sizeId.push(item.sizeId);
+          }
+      } else {
+          productItems[item.name] = JSON.parse(JSON.stringify(item))
+          if(item.availableQuantity > 0) {
+              productItems[item.name].colorId = [item.colorId];
+              productItems[item.name].sizeId = [item.sizeId];
+          }
+      }
+  }
   const colors = await getColors();
   const sizes = await getSizes();
   const categories = await getCategories();
@@ -64,7 +81,7 @@ const HomePage:React.FC<HomePageProps> = async({
               </div>
             </div>
             <div className="mt-6 lg:col-span-4 lg:mt-0">
-              <ProductList title={"Product For You!"}  items={products} />
+              <ProductList title={"Product For You!"}  items={productItems} />
             </div>
           </div>
       </div>
