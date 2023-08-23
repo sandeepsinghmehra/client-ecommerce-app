@@ -4,7 +4,7 @@ import Image from "next/image"
 
 import { Product } from "@/types"
 import { IconButton } from "@/components/ui/icon-button";
-import { Expand, Heart, ShoppingCart } from "lucide-react";
+import { Expand, Heart } from "lucide-react";
 import { Currency } from "@/components/ui/currency";
 import { useRouter } from "next/navigation";
 import { MouseEventHandler } from "react";
@@ -39,13 +39,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     };
 
     return (
-        <div onClick={handleClick} key={data._id} className="bg-white group cursor-pointer rounded-xl border p-3 space-y-4 overflow-hidden">
+        <div onClick={handleClick} className="bg-white group cursor-pointer rounded-xl border p-3 space-y-4 overflow-hidden">
             {/* Images and Actions */}
             <div className="aspect-square rounded-xl bg-gray-100 relative">
                 <Image
                     src={data?.images?.[0]?.url}
                     fill
-                    alt="Image"
+                    alt={`Image-${data._id}`}
                 />
                 <div className="opacity-0 group-hover:opacity-100 transition absolute w-full px-6 top-20">
                     <div className="flex justify-center gap-x-6">
@@ -96,7 +96,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                     <h3 className="font-semibold text-black">Color:</h3>
                     <div className="flex flex-row w-full line-clamp-1">
                         {data?.colorId.map((color: any) => (
-                            <div className="h-6 w-6 rounded-full border px-2 mx-1 border-gray-600" style={{ backgroundColor: color.value }} />
+                            <div 
+                                className="h-6 w-6 rounded-full border px-2 mx-1 border-gray-600" 
+                                style={{ backgroundColor: color.value }}
+                                key={color._id} 
+                            />
                         ))}
                     </div>
                     </div>
