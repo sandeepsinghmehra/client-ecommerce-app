@@ -33,7 +33,7 @@ const OrderPage:React.FC<OrderPageProps> = async({
                       fill
                       alt='ecommerce-image'
                       src={item.images[0].url} 
-                      className='w-full h-full object-cover object-center p-2 rounded'
+                      className='w-full h-full object-cover object-center md:p-2 rounded'
                     />
                   </div>
                   <div className='flex flex-col pl-5'>
