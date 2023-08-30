@@ -10,6 +10,7 @@ import Head from "next/head";
 import Script from "next/script";
 import { useCartContext } from "@/context/cartContext";
 import CheckoutForm from "./components/checkout-form";
+import Container from "@/components/ui/container";
 
 
 declare global {
@@ -96,10 +97,14 @@ const CheckoutPage = () => {
           crossOrigin="anonymous" 
           strategy="afterInteractive"
           src={`${process.env.NEXT_PUBLIC_PAYTM_HOST}/merchantpgpui/checkoutjs/merchants/${process.env.NEXT_PUBLIC_PAYTM_MID}.js`}> </Script>
-        <h2 className="text-3xl font-bold text-gray-900 my-4">
-            Checkout
-        </h2>
-        <CheckoutForm data={items} initiatePayment={initiatePayment} totalPrice={totalPrice} />
+          <Container>
+            <div className="w-full px-4 py-7 sm:px-6 lg:px-8">
+              <h2 className="text-3xl font-bold text-gray-900 my-4">
+                Checkout
+              </h2>
+              <CheckoutForm data={items} initiatePayment={initiatePayment} totalPrice={totalPrice} />
+            </div>
+          </Container>
     </div>
   );
 }
