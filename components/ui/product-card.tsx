@@ -50,7 +50,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                 <div className="opacity-0 group-hover:opacity-100 transition absolute w-full px-6 top-20">
                     <div className="flex justify-center gap-x-6">
                         <IconButton icon={<Expand size={20}/>} onClick={onPreview} className={"text-gray-600"}/>
-                        {/* <IconButton icon={<ShoppingCart size={20}/>} onClick={handleAddToCart} className={"text-gray-600"}/> */}
                     </div>
                 </div>
                 <div className="opacity-100 transition absolute right-0 top-0 p-2">
@@ -59,10 +58,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             </div>
             <div className="group w-full bg-white group-hover:pt-4 transition-transform transform translate-y-0 group-hover:-translate-y-20 duration-500">
             {/* Description */}
-            <div>
-                <p className="flex items-center font-semibold text-lg h-10 my-auto leading-tight line-clamp-2">
+            <div className="w-full">
+                {/* Product Name */}
+                <p className="font-semibold text-lg w-full h-10 my-auto leading-tight line-clamp-2 overflow-hidden">
                     {data.name}
                 </p>
+                {/*  Product Category Name */}
                 <p className="text-sm text-gray-500 my-1">
                     {data.categoryId?.name}
                 </p>

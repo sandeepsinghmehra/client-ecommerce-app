@@ -32,7 +32,7 @@ const HomePage:React.FC<HomePageProps> = async({
   });
   let productItems: any = {};
   for(let item of products){
-      if(item.name in productItems){
+      if(item.name in productItems){ 
           if(!productItems[item.name].colorId.includes(item.colorId) && item.availableQuantity > 0){
               productItems[item.name].colorId.push(item.colorId);
           }
