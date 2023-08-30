@@ -1,6 +1,6 @@
 import { Product } from "@/types";
 import { NoResults } from "@/components/ui/no-results";
-import { SuggestionProductCard } from "./ui/suggestion-product-card";
+import { Card } from "./ui/card";
 
 interface ProdcutListProps {
     title: string;
@@ -18,7 +18,7 @@ export const SuggestionProductList: React.FC<ProdcutListProps> = ({
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {items.map((item:any)=>{
                     return (
-                        <SuggestionProductCard key={item._id} data={item} />
+                        <Card key={item._id} data={item} />
                 )})}
             </div>
         </div>

@@ -7,7 +7,7 @@ import Container from "@/components/ui/container";
 import Filter from "./components/filter";
 import MobileFilters from "./components/mobile-filter";
 import { NoResults } from "@/components/ui/no-results";
-import { SuggestionProductCard } from "@/components/ui/suggestion-product-card";
+import { Card } from "@/components/ui/card";
 
 
 export const revalidate = 0;
@@ -61,7 +61,7 @@ const CategoryPage: React.FC<CategoryPageProps> = async({
                     {products.length === 0 && <NoResults />}
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                         {products.map((item) => (
-                            <SuggestionProductCard key={item._id} data={item} />
+                            <Card key={item._id} data={item} />
                         ))}
                     </div>
                     </div>
