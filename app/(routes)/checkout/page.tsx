@@ -3,8 +3,6 @@
 // import axios from "axios";
 import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-
-import { Button } from "@/components/ui/button";
 import { toast } from "react-hot-toast";
 import Head from "next/head";
 import Script from "next/script";
@@ -44,7 +42,6 @@ const CheckoutPage = () => {
     });
     
     let txnRes = await res.json();
-    console.log("txtRes: ", txnRes);
   
     let txnToken = txnRes.txnToken;
     var config = {
