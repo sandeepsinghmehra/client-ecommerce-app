@@ -44,7 +44,7 @@ export const Card: React.FC<ProductCardProps> = ({
                 <Image
                     src={data?.images?.[0]?.url}
                     fill
-                    alt="Image"
+                    alt={`Image-${data._id}`}
                 />
                 <div className="opacity-0 group-hover:opacity-100 transition absolute w-full px-6 top-20">
                     <div className="flex justify-center gap-x-6">
