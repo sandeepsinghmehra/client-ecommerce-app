@@ -1,4 +1,3 @@
-import Footer from '@/components/footer'
 import './globals.css'
 import { Poppins } from 'next/font/google'
 import Navbar from '@/components/navbar/navbar'
@@ -15,11 +14,6 @@ const font = Poppins({
   display: 'swap'
 });
 
-export const metadata = {
-  title: 'Shopcart | Home',
-  description: 'Shopcart',
-}
-
 export default function RootLayout({
   children,
 }: {
@@ -35,7 +29,6 @@ export default function RootLayout({
             <NavbarLabel />
             <Navbar />
             {children}
-            <Footer />
           </PreviewContextProvider>
         </CartProvider>
       </body>

@@ -1,77 +1,57 @@
 "use client";
+
 import useAuth from "@/context/useAuth";
 import { UserCircle } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, {FormEvent, useState} from "react";
-import { Button } from "../ui/button";
 import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 
-
-const Signup = () => {
-
+const Login = () => {
     const router = useRouter()
+    const {setAuthStatus} = useAuth()
     const [formData, setFormData] = useState({
         email: "",
         password: "",
-        name: "",
     })
     const [error, setError] = useState("")
 
-    const {setAuthStatus} = useAuth();
+    const login = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        try {
+            // const session = await appwriteService.login(formData);
+            // if (session) {
+            //     setAuthStatus(true)
+            //     router.push("/profile")
+            // }
+                
+            
+        } catch (error: any) {
+            setError(error.message)
+        }
+    }
 
-    // const create = async (e: FormEvent<HTMLFormElement>) => {
-    //     e.preventDefault()
-    //     try {
-    //         const userData = await appwriteService.createUserAccount(formData);
-    //         if (userData) {
-    //             setAuthStatus(true)
-    //             router.push("/profile")
-    //         }
-    //     } catch (error: any) {
-    //         setError(error.message)
-    //     }
-    // }
-
-    return(
+    return (
         <div className="flex items-center justify-center w-full">
             <div className={`mx-auto w-full max-w-lg bg-gray-200/50 rounded-xl p-10`}>
                 <div className="mb-2 flex justify-center">
                         <UserCircle size={40} color="green"/>
                 </div>
                 <h2 className="text-center text-2xl font-bold leading-tight text-black">
-                    Register Account
+                    Login
                 </h2>
-               
+                
                 {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
-                {/* <form onSubmit={create} className="mt-8"> */}
-                <form className="mt-8">
+                <form onSubmit={login} className="mt-8">
                     <div className="space-y-5">
-                        <div>
-                            <label htmlFor="name" className="text-base font-medium text-gray-900">
-                                Full Name
-                            </label>
-                            <div className="mt-2">
-                                <Input
-                                    className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                                    type="text"
-                                    placeholder="Full Name"
-                                    id="name"
-                                    value={formData.name}
-                                    onChange={(e) =>
-                                        setFormData((prev) => ({ ...prev, name: e.target.value }))
-                                    }
-                                    required
-                                />
-                            </div>
-                        </div>
                         <div>
                             <label htmlFor="email" className="text-base font-medium text-gray-900">
                                 Email address
                             </label>
                             <div className="mt-2">
                                 <Input
-                                    className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                                    className="h-10 w-full"
                                     type="email"
                                     value={formData.email}
                                     onChange={(e) =>
@@ -91,7 +71,7 @@ const Signup = () => {
                             </div>
                             <div className="mt-2">
                                 <Input
-                                    className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                                    className="flex h-10 w-full"
                                     type="password"
                                     placeholder="Password"
                                     value={formData.password}
@@ -108,28 +88,28 @@ const Signup = () => {
                         </div>
                         <div>
                             <Button
-                                size={'lg'}
-                                variant={'outline'}
                                 type="submit"
-                                className="inline-flex w-full items-center justify-center px-3.5 py-2.5 font-semibold leading-7 "
+                                variant={'secondary'}
+                                className="rounded-3xl text-teal-900 hover:bg-teal-900 hover:text-white my-2"
                             >
-                                Create Account
+                                Login
                             </Button>
                         </div>
                     </div>
                 </form>
                 <p className="mt-2 text-center text-sm text-gray-600 font-light">
-                    Already have an account?&nbsp;
+                    Don&apos;t have any account?&nbsp;
                     <Link
-                        href="/login"
+                        href="/signup"
                         className="font-medium text-primary transition-all duration-200 hover:underline"
                     >
-                        Login
+                        Register
                     </Link>
                 </p>
             </div>
         </div>
-    )
+    );
 }
 
-export default Signup;
+
+export default Login;
