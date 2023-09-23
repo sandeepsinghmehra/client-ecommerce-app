@@ -6,6 +6,7 @@ import { ToasterProvider } from '@/providers/toast-provider'
 import PreviewModalProvider from '@/providers/preview-modal-provider'
 import NavbarLabel from '@/components/navbar/navbar-label'
 import { CartProvider } from '@/context/cartContext'
+import { AuthProvider } from '@/providers/AuthProvider'
 
 const font = Poppins({
   weight: [ '100', '200', '300', '400', '500', '600', '700', '800', '900'],
@@ -22,15 +23,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
-        <CartProvider>
-          <PreviewContextProvider>
-            <PreviewModalProvider />
-            <ToasterProvider />
-            <NavbarLabel />
-            <Navbar />
-            {children}
-          </PreviewContextProvider>
-        </CartProvider>
+        <AuthProvider>
+          <CartProvider>
+            <PreviewContextProvider>
+              <PreviewModalProvider />
+              <ToasterProvider />
+              <NavbarLabel />
+              <Navbar />
+              {children}
+            </PreviewContextProvider>
+          </CartProvider>
+        </AuthProvider>
       </body>
     </html>
   )

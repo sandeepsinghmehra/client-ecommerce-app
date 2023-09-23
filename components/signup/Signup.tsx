@@ -1,4 +1,5 @@
 "use client";
+
 import useAuth from "@/context/useAuth";
 import { UserCircle } from "lucide-react";
 import Link from "next/link";
@@ -6,6 +7,7 @@ import { useRouter } from "next/navigation";
 import React, {FormEvent, useState} from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
+import { createUserAccount, resUserExists } from "@/actions/auth";
 
 
 const Signup = () => {
@@ -18,20 +20,39 @@ const Signup = () => {
     })
     const [error, setError] = useState("")
 
-    const {setAuthStatus} = useAuth();
+    // const {setAuthStatus} = useAuth();
 
-    // const create = async (e: FormEvent<HTMLFormElement>) => {
-    //     e.preventDefault()
-    //     try {
-    //         const userData = await appwriteService.createUserAccount(formData);
-    //         if (userData) {
-    //             setAuthStatus(true)
-    //             router.push("/profile")
-    //         }
-    //     } catch (error: any) {
-    //         setError(error.message)
-    //     }
-    // }
+    const create = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        
+    if (!formData.name || !formData.email || !formData.password) {
+        setError("All fields are necessary.");
+        return;
+      }
+  
+      try {
+        const resUser = await resUserExists(formData.email);
+        console.log("res when resUser when check userExixts user", resUser);
+        const { user } = await resUser.json();
+  
+        if (user) {
+          setError("User already exists.");
+          return;
+        }
+  
+        const res = await createUserAccount(formData);
+        console.log("res when create user", res);
+        if (res.ok) {
+          const form:any = e.target;
+          form.reset();
+          router.push("/");
+        } else {
+          console.log("User registration failed.");
+        }
+      } catch (error) {
+        console.log("Error during registration: ", error);
+      }
+    }
 
     return(
         <div className="flex items-center justify-center w-full">
@@ -44,8 +65,8 @@ const Signup = () => {
                 </h2>
                
                 {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
-                {/* <form onSubmit={create} className="mt-8"> */}
-                <form className="mt-8">
+                <form onSubmit={create} className="mt-8">
+                {/* <form className="mt-8"> */}
                     <div className="space-y-5">
                         <div>
                             <label htmlFor="name" className="text-base font-medium text-gray-900">
@@ -109,7 +130,7 @@ const Signup = () => {
                         <div>
                             <Button
                                 size={'lg'}
-                                variant={'outline'}
+                                variant={'default'}
                                 type="submit"
                                 className="inline-flex w-full items-center justify-center px-3.5 py-2.5 font-semibold leading-7 "
                             >
