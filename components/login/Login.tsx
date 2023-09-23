@@ -3,10 +3,12 @@
 import useAuth from "@/context/useAuth";
 import { UserCircle } from "lucide-react";
 import Link from "next/link";
+
 import { useRouter } from "next/navigation";
 import React, {FormEvent, useState} from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
+import { login } from "@/actions/auth";
 
 const Login = () => {
     const router = useRouter()
@@ -17,17 +19,19 @@ const Login = () => {
     })
     const [error, setError] = useState("")
 
-    const login = async (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
+    const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         try {
-            // const session = await appwriteService.login(formData);
-            // if (session) {
-            //     setAuthStatus(true)
-            //     router.push("/profile")
-            // }
-                
-            
+            const res:any = await login(formData);
+      
+            if (res.error) {
+              setError("Invalid Credentials");
+              return;
+            }
+      
+            router.replace("/");   //     router.push("/profile")
         } catch (error: any) {
+            console.log(error);
             setError(error.message)
         }
     }
@@ -43,7 +47,7 @@ const Login = () => {
                 </h2>
                 
                 {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
-                <form onSubmit={login} className="mt-8">
+                <form onSubmit={handleLogin} className="mt-8">
                     <div className="space-y-5">
                         <div>
                             <label htmlFor="email" className="text-base font-medium text-gray-900">
